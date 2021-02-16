@@ -40,9 +40,11 @@ async def get_post(post_id: int, db: Session = Depends(deps.get_db)):
     post_obj.reading += 1
     db.commit()
     db.refresh(post_obj)
-    post = db.query(models.Post, models.Category).filter(models.Post.category_id == models.Category.id).filter(
-        models.Post.id == post_id
-    ).first()
+    # 三表查询
+    post = db.query(models.Post, models.Category, models.Review).join(models.Category, models.Post.category_id==models.Category.id).join(
+        models.Review, models.Post.id == models.Review.post_id
+    ).all()
+    # post = db.query(models.Post, models.Review).filter(models.Post.id == models.Review.post_id).all()
     return Response200(data={"post": post})
 
 

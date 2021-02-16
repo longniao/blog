@@ -16,5 +16,6 @@
 from models import Base
 from models.post import Post
 from models.admin import Admin
-from models.review import Review
+from models.comment import Comment
 from models.category import Category
+from models.link import Link

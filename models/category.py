@@ -11,6 +11,8 @@
 @desc:
 分类表
 """
+from sqlalchemy.orm import relationship
+
 from models import Base, Column, Integer, String
 
 
@@ -18,3 +20,4 @@ class Category(Base):
     """分类表"""
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String(30), unique=True, nullable=True, comment="分类名称")
+    posts = relationship('Post', back_populates='category')

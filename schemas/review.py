@@ -2,7 +2,7 @@
 # _*_ coding: utf-8 _*_
 """
 @project: blog(FastAPI)
-@file: review.py
+@file: comment.py
 @author: zy7y
 @time: 2021/1/9
 @site: https://cnblogs.com/zy7y
