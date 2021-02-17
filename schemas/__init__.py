@@ -17,8 +17,14 @@ from pydantic import BaseModel
 
 
 class Token(BaseModel):
-    token_type: str = "bearer"
-    access_token: str
+    # token_type: str = "bearer"
+    # access_token: str
+    token: str
+
+
+class Auth(BaseModel):
+    username: str = "yan22"
+    password: str = "S$V0CLeH_$"
 
 
 class ResponseBase(BaseModel):
