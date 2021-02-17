@@ -13,26 +13,25 @@
 """
 from typing import Union
 
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends
 from fastapi.security import OAuth2PasswordRequestForm
 from sqlalchemy.orm import Session
 
-import db as models
+from db import Admin
 from core import deps, security
-from core.security import create_access_token, get_password_hash
-from schemas import Response200, Response400
-from schemas.admin import AdminInit, Token
+from core.security import create_access_token
+from schemas import Token, Response200, Response404
 
-auth_router = APIRouter(tags=["登录"], prefix="/auth")
+auth_router = APIRouter(tags=["登录"])
 
 
-@auth_router.post("/login", name="管理员登录", response_model=Union[Response200, Response400])
+@auth_router.post("/auth", name="管理员登录", response_model=Union[Response200, Response404])
 async def admin_login(
         db: Session = Depends(deps.get_db),
         form_data: OAuth2PasswordRequestForm = Depends()
 ):
-    user = db.query(models.Admin).filter(models.Admin.username == form_data.username).first()
+    user = db.query(Admin).filter(Admin.username == form_data.username).first()
     if not user or not security.verify_password(form_data.password, user.password_hash):
-        return Response400(msg="用户名或密码错误")
+        return Response404(msg="用户名或密码错误")
     token = Token(access_token=create_access_token(user.id))
     return Response200(data={"token": token})

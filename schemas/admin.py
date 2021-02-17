@@ -28,15 +28,6 @@ class AdminUpdate(Admin):
     password: str
 
 
-class AdminInit(AdminUpdate):
-    username: str = "admin"
-    password: str = "123456"
-    blog_title: str = "柯南奇异测试笔记"
-    blog_sub_title: str = "上线bug率99.9%"
-    name: str = "zy7y_knj"
-    about: str = "22个月测试从业经验,熟悉Python语法,能独立完成自动化测试脚本编写."
-
-
 # 与数据库对应的响应模型
 class AdminBase(Admin):
     id: int
@@ -45,8 +36,3 @@ class AdminBase(Admin):
 
     class Config:
         orm_mode = True
-
-
-class Token(BaseModel):
-    token_type: str = "bearer"
-    access_token: str

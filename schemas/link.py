@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 # _*_ coding: utf-8 _*_
 """
-@project: blog(FastAPI)
-@file: comment.py
+@project: blog
+@file: link.py
 @author: zy7y
-@time: 2021/1/9
+@time: 2021/2/17
 @site: https://cnblogs.com/zy7y
 @github: https://github.com/zy7y
 @gitee: https://gitee.com/zy7y
@@ -18,23 +18,17 @@ from pydantic import BaseModel
 
 
 # 创建/修改的基类, 回复的评论
-class Review(BaseModel):
-    post_id: int  # 文章id
-    author: str
-    content: str
+class Link(BaseModel):
+    name: str
+    url: str
 
 
-class ReviewCreate(Review):
-    pass
-
-
-# 回复的评论
-class ReviewReply(ReviewCreate):
+class LinkCreate(Link):
     pass
 
 
 # 数据库查询出来的模型类
-class ReviewBase(Review):
+class LinkBase(Link):
     """数据库user表基础模型，并且与model中的user相关联"""
     id: Optional[int] = None
 

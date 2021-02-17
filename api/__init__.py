@@ -12,6 +12,7 @@
 蓝图模式，实际api管理
 """
 from fastapi import FastAPI, Request
+
 from tools.logger import logger
 from starlette.middleware.cors import CORSMiddleware
 
@@ -25,7 +26,6 @@ def create_app():
       Blog: https://www.cnblogs.com/zy7y  
       Gitee: https://gitee.com/zy7y/blog
       Github: https://github.com/zy7y/blog
-      **默认账号: admin  默认密码: 123456**
       参考资料
       - 模型设计参考《Flask Web开发实战_入门、进阶与原理解析（李辉著 ）》BlueBlog项目,
       - 工厂模式和日志代码参考: https://github.com/CoderCharm

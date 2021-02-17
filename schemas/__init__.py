@@ -16,6 +16,11 @@ from typing import Any
 from pydantic import BaseModel
 
 
+class Token(BaseModel):
+    token_type: str = "bearer"
+    access_token: str
+
+
 class ResponseBase(BaseModel):
     data: Any = None
 
@@ -25,6 +30,6 @@ class Response200(ResponseBase):
     msg = "操作成功."
 
 
-class Response400(ResponseBase):
-    code = 400
-    msg = "请求错误."
+class Response404(ResponseBase):
+    code = 404
+    msg = "Not Found"
