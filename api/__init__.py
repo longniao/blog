@@ -26,6 +26,7 @@ def create_app():
       Blog: https://www.cnblogs.com/zy7y  
       Gitee: https://gitee.com/zy7y/blog
       Github: https://github.com/zy7y/blog
+      已初始账号密码: 管理员账号: yan22 管理员密码: S$V0CLeH_$
       参考资料
       - 模型设计参考《Flask Web开发实战_入门、进阶与原理解析（李辉著 ）》BlueBlog项目,
       - 工厂模式和日志代码参考: https://github.com/CoderCharm
