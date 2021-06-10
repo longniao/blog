@@ -28,8 +28,5 @@ class Settings(BaseSettings):
     # 跨域设置
     ORIGINS: List[str] = ["*", ]
 
-    # 数据库url配置
-    SQLALCHEMY_DATABASE_URI: str = "sqlite:///db/blog.db"
-
 
 setting = Settings()

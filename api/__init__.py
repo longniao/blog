@@ -12,11 +12,11 @@
 蓝图模式，实际api管理
 """
 from fastapi import FastAPI, Request
+from tortoise.contrib.fastapi import register_tortoise
 
 from tools.logger import logger
-from starlette.middleware.cors import CORSMiddleware
+from fastapi.middleware.cors import CORSMiddleware
 
-from api.v1 import router
 from core.config import setting
 
 
@@ -31,7 +31,18 @@ def create_app():
       - 模型设计参考《Flask Web开发实战_入门、进阶与原理解析（李辉著 ）》BlueBlog项目,
       - 工厂模式和日志代码参考: https://github.com/CoderCharm
               """)
-    app.include_router(router)
+    # app.include_router(router)
+
+    # 挂载 数据库
+    register_tortoise(
+        app,
+        db_url="sqlite://db.sqlite3",
+        modules={"models": ["db.models"]},
+        # # 生成表
+        generate_schemas=True,
+        # 使用异常，当无数据是自动返回
+        add_exception_handlers=True,
+    )
 
     # 设置跨域
     app.add_middleware(

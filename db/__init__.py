@@ -9,13 +9,4 @@
 @github: https://github.com/zy7y
 @gitee: https://gitee.com/zy7y
 @desc:
-数据库连接/session等操作的包
 """
-
-# 导入所有用到的模型 方便alembic使用
-from models import Base
-from models.post import Post
-from models.admin import Admin
-from models.comment import Comment
-from models.category import Category
-from models.link import Link
