@@ -14,6 +14,8 @@
 from fastapi import FastAPI, Request
 from tortoise.contrib.fastapi import register_tortoise
 
+from api.admin import blog, admin
+from api.auth import auth
 from tools.logger import logger
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -23,15 +25,12 @@ from core.config import setting
 def create_app():
     app = FastAPI(title="个人博客API",
               description="""
-      Blog: https://www.cnblogs.com/zy7y  
-      Gitee: https://gitee.com/zy7y/blog
-      Github: https://github.com/zy7y/blog
-      已初始账号密码: 管理员账号: yan22 管理员密码: S$V0CLeH_$
-      参考资料
-      - 模型设计参考《Flask Web开发实战_入门、进阶与原理解析（李辉著 ）》BlueBlog项目,
-      - 工厂模式和日志代码参考: https://github.com/CoderCharm
+      Blog: https://www.cnblogs.com/zy7y
+      账号: tester, 密码: 123456
               """)
-    # app.include_router(router)
+    app.include_router(auth)
+    app.include_router(blog)
+    app.include_router(admin)
 
     # 挂载 数据库
     register_tortoise(

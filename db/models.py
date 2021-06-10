@@ -7,8 +7,6 @@
 @Date  :2021/6/10 18:55
 @Desc  : 模型类
 """
-from typing import List
-
 from tortoise import fields, Tortoise
 from tortoise.contrib.pydantic import pydantic_model_creator
 from tortoise.models import Model
@@ -53,7 +51,7 @@ class Comment(AbstractModel):
         allow_none=True,
         default=None,
         description="父级评论")
-    post = fields.OneToOneField(
+    post = fields.ForeignKeyField(
         'models.Post',
         related_name='comments',
         description="文章")
