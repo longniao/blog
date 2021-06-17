@@ -93,7 +93,14 @@ async def select_all_post(limit: int = 10, page: int = 1):
 
 @blog.get("/posts/{post_id}", name="获取文章详情")
 async def select_post(post_id: int):
-    return Success(data=await models.Post_Pydantic.from_queryset_single(models.Post.get(id=post_id)))
+    try:
+        # 阅读量 + 1
+        post_obj = await models.Post.filter(id=post_id).first()
+        post_obj.reading += 1
+        await models.Post.filter(id=post_id).update(reading=post_obj.reading)
+        return Success(data=await models.Post_Pydantic.from_queryset_single(models.Post.get(id=post_id)))
+    except AttributeError:
+        return Fail(msg="文章不存在.")
 
 
 @blog.get("/categorys", name="获取分类列表")
@@ -120,7 +127,7 @@ async def select_all_comment(limit: int = 10, page: int = 1):
 @blog.post("/comments", name="新增评论")
 async def create_comment(comment: models.CommentIn_Pydantic):
     comment_obj = await models.Comment.create(**comment.dict(exclude_unset=True))
-    return Success(data=await models.Post_Pydantic.from_tortoise_orm(comment_obj))
+    return Success(data=await models.Comment_Pydantic.from_tortoise_orm(comment_obj))
 
 
 @blog.get("/links", name="友链列表")
