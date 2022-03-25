@@ -1,10 +1,19 @@
-.login{
-    margin: 0 auto;
-    width: 300px;
+.login {
+  height: 100%;
+  width: 100%;
+  /*flex 垂直水平居中*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url("@/assets/img/background.svg");
 }
-.title{
-    width: 100%;
-    font-size: 20px;
-    text-align: center;
-    padding-bottom: 24px;
+.login-card {
+  margin: 0 auto;
+  width: 300px;
+}
+.title {
+  width: 100%;
+  font-size: 20px;
+  text-align: center;
+  padding-bottom: 24px;
 }

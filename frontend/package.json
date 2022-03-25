@@ -13,7 +13,7 @@
     "axios": "^0.26.1",
     "pinia": "^2.0.11",
     "vue": "^3.2.31",
-    "vue-router": "^4.0.12"
+    "vue-router": "^4.0.13"
   },
   "devDependencies": {
     "@types/form-data": "^2.5.0",

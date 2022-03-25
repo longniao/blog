@@ -3,5 +3,6 @@
 /* eslint-disable */
 
 export type Token = {
-    token: string;
+    access_token: string;
+    token_type?: string;
 };

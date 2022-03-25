@@ -4,6 +4,6 @@ import {RouterView} from "vue-router";
 export default defineComponent({
     name: "App",
     setup(){
-        return () =>  <RouterView />
+        return () =>  <>后台首页</>
     }
 })
