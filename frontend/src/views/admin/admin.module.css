@@ -1,0 +1,21 @@
+.logo {
+    height: 32px;
+    margin: 16px;
+    background: rgba(255, 255, 255, 0.2);
+    text-align: center;
+    line-height: 32px;
+    font-size: 18px;
+    color: blueviolet;
+  }
+
+  .site-layout-sub-header-background {
+    background: #fff;
+  }
+
+  .site-layout-sub-header-background > span{
+    margin-left: 16px;
+  }
+  
+  .site-layout-background {
+    background: #fff;
+  }

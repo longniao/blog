@@ -29,7 +29,7 @@ export const useStore = defineStore({
           localCache.setCache('token', this.token)
           message.success('登录成功')
           console.log("跳转路由")
-          router.push('/main')
+          router.push('/admin/article')
       }
       else{
           message.error(loginResult?.msg ?? '登录失败')
