@@ -10,9 +10,28 @@ const router = createRouter({
       component: () => import("@/views/login/Login")
     },
     {
-      path: '/main',
+      path: '/admin',
       name: 'Home',
-      component: () => import("@/views/admin/Admin")
+      component: () => import("@/views/admin/Admin"),
+      children: [
+        {
+          path: 'article',
+          name: 'Article',
+          component: () => import("@/views/admin/article/Article")
+        }, {
+          path: 'category',
+          name: 'Category',
+          component: () => import("@/views/admin/category/Category")
+        }, {
+          path: 'project',
+          name: 'Project',
+          component: () => import("@/views/admin/project/Project")
+        }, {
+          path: 'visit',
+          name: 'Visit',
+          component: () => import("@/views/admin/visit/Visit")
+        },
+      ]
     }
 
   ]
