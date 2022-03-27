@@ -1,38 +1,43 @@
 import { defineComponent, reactive } from "vue";
-import { Divider, Input, message } from "ant-design-vue";
-import MdEditor from "md-editor-v3";
-import type { ArticleIn } from "@/client";
+import { useRoute, useRouter } from "vue-router";
 import { Service } from "@/client";
-import { useRouter } from "vue-router";
+import { message, Input, Divider } from "ant-design-vue";
+import type { ArticleIn } from "@/client";
+import MdEditor from "md-editor-v3";
 
 export default defineComponent({
-  name: "Add",
+  name: "ArticleEdit",
   setup() {
-    const article = reactive<ArticleIn>({
+    //  当前route 对象
+    const route = useRoute();
+    const currentArticle = {
       title: "",
       content: "",
-    });
-
+      ...route.params,
+    };
     const router = useRouter();
-
+    const article = reactive<ArticleIn>({
+      title: currentArticle.title ?? "",
+      content: currentArticle.content ?? "",
+    });
     const onSave = () => {
       // todo 校验标题是否为空，
-      if (article.title.trim.length === 0 && article.content.length === 0) {
+      if (article.title.trim().length === 0 && article.content.length === 0) {
         message.error("请检查是否填写完整");
         return;
       }
-
-      Service.methodArticlePost(article)
-        .then((r) => {
-          if (r.code === 200) {
-            message.success(r?.msg ?? "操作成功");
+      Service.methodArticlePkPut(Number(route.params.id), article)
+        .then((res) => {
+          if (res.code === 200) {
+            message.success(res.msg ?? "操作成功");
             router.push({
               name: "Article",
             });
           }
         })
-        .catch((e) => console.log(e));
+        .catch((err) => console.log(err));
     };
+
     return () => (
       <>
         <Input
