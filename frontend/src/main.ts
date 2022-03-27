@@ -5,6 +5,7 @@ import App from './App'
 import router from './router'
 import 'ant-design-vue/dist/antd.css';
 import '@/assets/base.css'
+import 'md-editor-v3/lib/style.css';
 import { useStore } from './stores/login';
 
 const app = createApp(App)

@@ -1,4 +1,4 @@
-import type { LoginForm } from '@/client'
+import { OpenAPI, type LoginForm } from '@/client'
 import { Service } from '@/client'
 import { defineStore } from 'pinia'
 import localCache from '@/tools'
@@ -28,8 +28,8 @@ export const useStore = defineStore({
           this.token = loginResult.data?.access_token ?? ''
           localCache.setCache('token', this.token)
           message.success('登录成功')
-          console.log("跳转路由")
-          router.push('/admin/article')
+          OpenAPI.TOKEN = this.token
+          router.push('/admin/article/list')
       }
       else{
           message.error(loginResult?.msg ?? '登录失败')
@@ -37,6 +37,7 @@ export const useStore = defineStore({
     },
     loadLocalCache() {
       this.token = localCache.getCache('token')
+      OpenAPI.TOKEN = this.token
     }
   }
 })

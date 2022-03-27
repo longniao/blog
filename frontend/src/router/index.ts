@@ -15,9 +15,14 @@ const router = createRouter({
       component: () => import("@/views/admin/Admin"),
       children: [
         {
-          path: 'article',
+          path: 'article/list',
           name: 'Article',
-          component: () => import("@/views/admin/article/Article")
+          component: () => import("@/views/admin/article/Article"),
+        },
+        {
+          path: 'article/add',
+          name: 'AddArticle',
+          component: () => import("@/views/admin/article/Add")
         }, {
           path: 'category',
           name: 'Category',

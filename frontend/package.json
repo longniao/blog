@@ -11,6 +11,7 @@
   "dependencies": {
     "ant-design-vue": "^2.2.8",
     "axios": "^0.26.1",
+    "md-editor-v3": "^1.11.3",
     "pinia": "^2.0.11",
     "vue": "^3.2.31",
     "vue-router": "^4.0.13"

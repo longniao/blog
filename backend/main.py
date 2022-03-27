@@ -16,6 +16,7 @@ app = FastAPI(
     on_startup=[init_orm],
     on_shutdown=[Tortoise.close_connections],
     default_response_class=responses.ORJSONResponse,
+    docs_url=None
 )
 
 if __name__ == '__main__':

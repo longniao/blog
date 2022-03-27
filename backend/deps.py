@@ -42,7 +42,7 @@ async def check_token(request: Request):
         token = request.headers.get("Authorization")
         payload = jwt.decode(token, setting.SECRET_KEY, algorithms=[setting.ALGORITHM])
         username: str = payload.get("sub")
-        if username == setting.username:
+        if username == setting.SUPER_USER:
             pass
         else:
             raise credentials_exception
