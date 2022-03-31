@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from typing import Optional
 
 from fastapi import Depends
 from tortoise.contrib.pydantic import pydantic_model_creator
@@ -47,10 +48,16 @@ def login_view(login_form: LoginForm):
 class ArticleViews(RESTFulViews):
     """文章列表"""
 
-    OutPut = pydantic_model_creator(Article, name="Article")
-    Input = pydantic_model_creator(
-        Article, name="ArticleIn", exclude_readonly=True, exclude=("visit",)
+    SchemaOut = pydantic_model_creator(Article, name="Article")
+    class OutPut(SchemaOut):
+        category_id :Optional[int] = None
+
+    SchemaInput = pydantic_model_creator(
+        Article, name="ArticleIn", exclude_readonly=True, exclude=("visit",),
     )
+
+    class Input(SchemaInput):
+        category_id :Optional[int] = None
 
     not_404 = Response(code=400, msg="文章不存在.")
 

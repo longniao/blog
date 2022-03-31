@@ -65,7 +65,7 @@ routes = [
     ),
     APIRoute(
         "/category",
-        CategoryViews.put,
+        CategoryViews.post,
         methods=["POST"],
         summary="新增分类",
         tags=["管理员"],
