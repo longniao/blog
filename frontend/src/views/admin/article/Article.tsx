@@ -4,6 +4,13 @@ import { Service } from "@/client";
 import { Table, Space, message } from "ant-design-vue";
 import type { Article } from "@/client";
 
+interface Pagination {
+  current: number; // 当前页数
+  pageSize: number; // 每页条数
+  total: number;  // 总条数
+}
+
+
 export default defineComponent({
   name: "Atricle",
   setup() {

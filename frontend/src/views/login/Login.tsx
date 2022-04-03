@@ -14,8 +14,8 @@ export default defineComponent({
     const store = useStore()
 
     const loginForm = reactive<LoginForm>({
-      username: "",
-      password: "",
+      username: "admin",
+      password: "123456",
     });
 
     // Form组件对象
